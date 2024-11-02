@@ -1,0 +1,14 @@
+
+# Ignore Mac files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ignore Python cache files
+__pycache__/
+
+# Ignore most of the .vscode folder, except for project-specific settings
+.vscode/*
+!.vscode/settings.json  # Include project-specific settings
+!.vscode/launch.json    # Include project-specific launch configurations if needed
+!.vscode/tasks.json     # Include project-specific tasks if needed
