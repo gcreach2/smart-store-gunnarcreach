@@ -11,7 +11,7 @@ This project is focused on essential data preparation techniques in Python, incl
 
 ### Project Setup Guide
 
-Follow these steps to set up and configure your project environment on macOS.
+
 
 ```bash
 # 1. Create a Virtual Environment for the Project
