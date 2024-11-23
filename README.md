@@ -44,10 +44,6 @@ Activate the virtual environment:
   ```bash
   source .venv/bin/activate
   ```
-- **Windows**:
-  ```bash
-  .\.venv\Scripts\activate
-  ```
 
 ### **3. Install Project Dependencies**
 Upgrade pip and install required dependencies:
