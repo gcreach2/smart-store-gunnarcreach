@@ -1,3 +1,51 @@
 2024-11-18 13:50:26.304 | INFO     | __main__:main:79 - Starting data warehouse creation...
 2024-11-18 13:50:26.308 | INFO     | __main__:create_dw:66 - Data warehouse tables created successfully.
 2024-11-18 13:50:26.309 | INFO     | __main__:main:81 - Data warehouse creation complete.
+2024-11-22 18:19:18.356 | INFO     | __main__:main:61 - Starting etl_to_dw ...
+2024-11-22 18:19:18.385 | INFO     | __main__:load_data_to_db:42 - Customers table loaded successfully.
+2024-11-22 18:19:18.392 | INFO     | __main__:load_data_to_db:46 - Products table loaded successfully.
+2024-11-22 18:19:18.397 | INFO     | __main__:load_data_to_db:50 - Sales table loaded successfully.
+2024-11-22 18:19:18.398 | INFO     | __main__:main:63 - Finished etl_to_dw complete.
+2024-11-27 18:23:10.171 | INFO     | __main__:main:66 - Starting OLAP cubing process...
+2024-11-27 18:23:10.173 | INFO     | __main__:create_olap_cube:24 - Connected to SQLite database.
+2024-11-27 18:23:10.175 | ERROR    | __main__:create_olap_cube:57 - Unexpected error: Execution failed on sql '
+        SELECT 
+            strftime('%w', sales_date) AS day_of_week,
+            product_id,
+            customer_id,
+            SUM(sales_amount) AS total_sales,
+            AVG(sales_amount) AS avg_sales,
+            COUNT(sale_id) AS sales_count,
+            GROUP_CONCAT(sale_id) AS sale_ids
+        FROM sales
+        GROUP BY day_of_week, product_id, customer_id
+        ORDER BY day_of_week, product_id, customer_id;
+        ': no such column: sales_date
+2024-11-27 18:23:10.176 | INFO     | __main__:create_olap_cube:61 - SQLite connection closed.
+2024-11-27 18:23:10.176 | INFO     | __main__:main:68 - OLAP cubing process completed.
+2024-11-27 18:32:10.043 | INFO     | __main__:main:61 - Starting OLAP cubing process...
+2024-11-27 18:32:10.044 | INFO     | __main__:create_olap_cube:27 - Connected to SQLite database.
+2024-11-27 18:32:10.075 | INFO     | __main__:create_olap_cube:47 - OLAP cube saved to data/dw/olap_cube.csv
+2024-11-27 18:32:10.076 | INFO     | __main__:create_olap_cube:56 - SQLite connection closed.
+2024-11-27 18:32:10.076 | INFO     | __main__:main:63 - OLAP cubing process completed.
+2024-11-27 18:38:59.218 | INFO     | __main__:main:61 - Starting OLAP cubing process...
+2024-11-27 18:38:59.219 | INFO     | __main__:create_olap_cube:27 - Connected to SQLite database.
+2024-11-27 18:38:59.224 | INFO     | __main__:create_olap_cube:47 - OLAP cube saved to data/dw/olap_cube.csv
+2024-11-27 18:38:59.225 | INFO     | __main__:create_olap_cube:56 - SQLite connection closed.
+2024-11-27 18:38:59.225 | INFO     | __main__:main:63 - OLAP cubing process completed.
+2024-12-02 19:19:59.244 | INFO     | __main__:main:71 - Starting etl_to_dw ...
+2024-12-02 19:19:59.249 | INFO     | __main__:load_data_to_db:36 - Connection to SQLite database established.
+2024-12-02 19:19:59.271 | INFO     | __main__:load_data_to_db:43 - Prepared data loaded into DataFrames.
+2024-12-02 19:19:59.290 | INFO     | __main__:load_data_to_db:47 - Customers table loaded successfully.
+2024-12-02 19:19:59.294 | INFO     | __main__:load_data_to_db:51 - Products table loaded successfully.
+2024-12-02 19:19:59.301 | INFO     | __main__:load_data_to_db:55 - Sales table loaded successfully.
+2024-12-02 19:19:59.302 | INFO     | __main__:load_data_to_db:66 - SQLite connection closed.
+2024-12-02 19:19:59.302 | INFO     | __main__:main:73 - ETL process completed successfully.
+2024-12-02 19:26:58.949 | INFO     | __main__:main:71 - Starting etl_to_dw ...
+2024-12-02 19:26:58.950 | INFO     | __main__:load_data_to_db:36 - Connection to SQLite database established.
+2024-12-02 19:26:58.965 | INFO     | __main__:load_data_to_db:43 - Prepared data loaded into DataFrames.
+2024-12-02 19:26:58.973 | INFO     | __main__:load_data_to_db:47 - Customers table loaded successfully.
+2024-12-02 19:26:58.977 | INFO     | __main__:load_data_to_db:51 - Products table loaded successfully.
+2024-12-02 19:26:58.982 | INFO     | __main__:load_data_to_db:55 - Sales table loaded successfully.
+2024-12-02 19:26:58.983 | INFO     | __main__:load_data_to_db:66 - SQLite connection closed.
+2024-12-02 19:26:58.983 | INFO     | __main__:main:73 - ETL process completed successfully.
