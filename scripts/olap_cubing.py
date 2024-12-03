@@ -25,23 +25,23 @@ def create_olap_cube() -> None:
         # SQL query to generate the OLAP cube
         query = """
         SELECT 
-            strftime('%w', SaleDate) AS DayOfWeek,
-            ProductID,
-            CustomerID,
-            SUM(SaleAmount) AS TotalSales,
-            AVG(SaleAmount) AS AvgSales,
-            COUNT(TransactionID) AS SalesCount,
-            GROUP_CONCAT(TransactionID) AS TransactionIDs
+            strftime('%w', sales_date) AS DayOfWeek,
+            product_id,
+            customer_id,
+            SUM(sales_amount) AS TotalSales,
+            AVG(sales_amount) AS AvgSales,
+            COUNT(sale_id) AS SalesCount,
+            GROUP_CONCAT(sale_id) AS SaleIDs
         FROM sales
-        GROUP BY DayOfWeek, ProductID, CustomerID
-        ORDER BY DayOfWeek, ProductID, CustomerID;
+        GROUP BY DayOfWeek, product_id, customer_id
+        ORDER BY DayOfWeek, product_id, customer_id;
         """
 
         # Execute the query and save the results to a DataFrame
         cube_df = pd.read_sql_query(query, conn)
         print("OLAP cube query executed successfully.")
 
-        # Map day_of_week numbers to weekday names
+        # Map DayOfWeek numbers to weekday names
         day_map = {
             "0": "Sunday", "1": "Monday", "2": "Tuesday",
             "3": "Wednesday", "4": "Thursday", "5": "Friday", "6": "Saturday"
