@@ -7,11 +7,9 @@ track events and issues during software execution. This logger setup uses Loguru
 messages and errors both to a file and to the console.
 """
 
-# Imports from Python Standard Library
 import pathlib
-
-# Imports from external packages
 from loguru import logger
+import sys
 
 # Define global constants
 CURRENT_SCRIPT = pathlib.Path(__file__).stem  # Gets the current file name without the extension
@@ -28,13 +26,11 @@ logger.add(LOG_FILE, level="INFO")
 # Optionally, add console output for logging (Uncomment the following line if needed)
 # logger.add(sys.stderr, level="DEBUG")
 
-
 def log_example() -> None:
     """Example logging function to demonstrate logging behavior."""
     logger.info("This is an example info message.")
     logger.warning("This is an example warning message.")
     logger.error("This is an example error message.")
-
 
 def main() -> None:
     """Main function to execute the logger setup and demonstrate its usage."""
@@ -45,7 +41,6 @@ def main() -> None:
     
     logger.info(f"View the log output at {LOG_FILE}")
     logger.info(f"EXITING {CURRENT_SCRIPT}.py.")
-
 
 # Conditional execution block that calls main() only when this file is executed directly
 if __name__ == "__main__":

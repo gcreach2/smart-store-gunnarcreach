@@ -49,3 +49,27 @@
 2024-12-02 19:26:58.982 | INFO     | __main__:load_data_to_db:55 - Sales table loaded successfully.
 2024-12-02 19:26:58.983 | INFO     | __main__:load_data_to_db:66 - SQLite connection closed.
 2024-12-02 19:26:58.983 | INFO     | __main__:main:73 - ETL process completed successfully.
+2024-12-02 20:23:39.166 | INFO     | __main__:main:77 - Starting OLAP Cubing process for product performance by day...
+2024-12-02 20:23:39.191 | INFO     | __main__:ingest_sales_data_from_dw:40 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 20:23:39.191 | ERROR    | __main__:create_product_performance_cube:62 - Error creating product performance cube: 'sales_date'
+2024-12-02 20:26:12.539 | INFO     | __main__:main:77 - Starting OLAP Cubing process for product performance by day...
+2024-12-02 20:26:12.542 | INFO     | __main__:ingest_sales_data_from_dw:40 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 20:26:12.542 | ERROR    | __main__:create_product_performance_cube:62 - Error creating product performance cube: 'sales_date'
+2024-12-02 20:28:51.062 | INFO     | __main__:main:77 - Starting OLAP Cubing process for product performance by day...
+2024-12-02 20:28:51.065 | INFO     | __main__:ingest_sales_data_from_dw:40 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 20:28:51.076 | ERROR    | __main__:create_product_performance_cube:62 - Error creating product performance cube: time data "2024-01-16" doesn't match format "%Y-%m-%d/", at position 1. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2024-12-02 20:31:16.874 | INFO     | __main__:main:77 - Starting OLAP Cubing process for product performance by day...
+2024-12-02 20:31:16.876 | INFO     | __main__:ingest_sales_data_from_dw:40 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 20:31:16.879 | ERROR    | __main__:create_product_performance_cube:62 - Error creating product performance cube: time data "2024-01-16" doesn't match format "%Y-%m-%d/", at position 1. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2024-12-02 20:32:45.386 | INFO     | __main__:main:77 - Starting OLAP Cubing process for product performance by day...
+2024-12-02 20:32:45.389 | INFO     | __main__:ingest_sales_data_from_dw:40 - Sales data successfully loaded from SQLite data warehouse.
+2024-12-02 20:32:45.391 | ERROR    | __main__:create_product_performance_cube:62 - Error creating product performance cube: time data "2024-01-16" doesn't match format "%Y-%m-%d/", at position 1. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.

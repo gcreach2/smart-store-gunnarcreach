@@ -25,6 +25,17 @@ DB_PATH: pathlib.Path = DW_DIR.joinpath("smart_sales.db")
 PREPARED_DATA_DIR: pathlib.Path = pathlib.Path("data").joinpath("prepared")
 
 
+def transform_sales_data(sales: pd.DataFrame) -> pd.DataFrame:
+    """Transform sales data to ensure proper date formatting."""
+    try:
+        sales['SaleDate'] = pd.to_datetime(sales['SaleDate']).dt.strftime('%Y-%m-%d')
+        logger.info("SaleDate column transformed to YYYY-MM-DD format.")
+        return sales
+    except Exception as e:
+        logger.error(f"Error transforming sales data: {e}")
+        raise
+
+
 def load_data_to_db() -> None:
     """Load prepared data into the data warehouse using the correct table names."""
     conn = None
@@ -42,6 +53,9 @@ def load_data_to_db() -> None:
 
         logger.info("Prepared data loaded into DataFrames.")
 
+        # Transform sales data
+        sales = transform_sales_data(sales)
+
         # Load customers
         customers.to_sql("customers", conn, if_exists="replace", index=False)
         logger.info("Customers table loaded successfully.")
@@ -54,6 +68,9 @@ def load_data_to_db() -> None:
         sales.to_sql("sales", conn, if_exists="replace", index=False)
         logger.info("Sales table loaded successfully.")
 
+        # Verify data load
+        verify_data_load(conn)
+
     except sqlite3.Error as e:
         logger.error(f"Database error during ETL: {e}")
     except FileNotFoundError as e:
@@ -64,6 +81,24 @@ def load_data_to_db() -> None:
         if conn:
             conn.close()
             logger.info("SQLite connection closed.")
+
+
+def verify_data_load(conn: sqlite3.Connection) -> None:
+    """Verify that the sales table is populated correctly."""
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM sales;")
+        count = cursor.fetchone()[0]
+        logger.info(f"Sales table contains {count} records.")
+
+        # Optional: Preview a few records
+        cursor.execute("SELECT * FROM sales LIMIT 5;")
+        logger.info("Preview of sales table:")
+        for row in cursor.fetchall():
+            logger.info(row)
+
+    except sqlite3.Error as e:
+        logger.error(f"Error verifying data load: {e}")
 
 
 def main() -> None:

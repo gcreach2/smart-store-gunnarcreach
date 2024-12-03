@@ -1,0 +1,30 @@
+2024-12-02 21:02:07.957 | INFO     | utils.logger:<module>:17 - Logger is ready to use.
+2024-12-02 21:02:07.958 | INFO     | __main__:main:78 - Starting OLAP Cubing process for product performance by day...
+2024-12-02 21:02:07.961 | ERROR    | __main__:ingest_sales_data_from_dw:41 - Error loading sales table data from data warehouse: unable to open database file
+2024-12-02 22:01:59.997 | INFO     | utils.logger:<module>:17 - Logger is ready to use.
+2024-12-02 22:01:59.998 | INFO     | __main__:main:78 - Starting SALES_LOW_REVENUE_DAYOFWEEK analysis...
+2024-12-02 22:01:59.998 | INFO     | __main__:load_olap_cube:18 - Loading OLAP cube from data/olap_cubing_outputs/multidimensional_olap_cube.csv
+2024-12-02 22:02:00.000 | ERROR    | __main__:load_olap_cube:23 - Error loading OLAP cube data: [Errno 2] No such file or directory: 'data/olap_cubing_outputs/multidimensional_olap_cube.csv'
+2024-12-02 22:02:00.001 | ERROR    | __main__:main:84 - Failed to load OLAP cube: [Errno 2] No such file or directory: 'data/olap_cubing_outputs/multidimensional_olap_cube.csv'
+2024-12-02 22:03:26.346 | INFO     | utils.logger:<module>:17 - Logger is ready to use.
+2024-12-02 22:03:26.347 | INFO     | __main__:main:78 - Starting SALES_LOW_REVENUE_DAYOFWEEK analysis...
+2024-12-02 22:03:26.347 | INFO     | __main__:load_olap_cube:18 - Loading OLAP cube from data/olap_cubing_outputs/multidimensional_olap_cube.csv
+2024-12-02 22:03:26.348 | ERROR    | __main__:load_olap_cube:23 - Error loading OLAP cube data: [Errno 2] No such file or directory: 'data/olap_cubing_outputs/multidimensional_olap_cube.csv'
+2024-12-02 22:03:26.348 | ERROR    | __main__:main:84 - Failed to load OLAP cube: [Errno 2] No such file or directory: 'data/olap_cubing_outputs/multidimensional_olap_cube.csv'
+2024-12-02 22:06:48.312 | INFO     | utils.logger:<module>:17 - Logger is ready to use.
+2024-12-02 22:06:48.313 | INFO     | __main__:main:78 - Starting SALES_LOW_REVENUE_DAYOFWEEK analysis...
+2024-12-02 22:06:48.313 | INFO     | __main__:load_olap_cube:18 - Loading OLAP cube from data/olap_cubing_outputs/multidimensional_olap_cube.csv
+2024-12-02 22:06:48.328 | INFO     | __main__:load_olap_cube:20 - OLAP cube data successfully loaded from data/olap_cubing_outputs/multidimensional_olap_cube.csv.
+2024-12-02 22:06:48.328 | INFO     | __main__:analyze_sales_by_weekday:29 - Analyzing sales by weekday...
+2024-12-02 22:06:48.333 | ERROR    | __main__:analyze_sales_by_weekday:38 - Error analyzing sales by DayOfWeek: 'Column not found: sale_amount_usd_sum'
+2024-12-02 22:06:48.333 | ERROR    | __main__:main:91 - Failed to analyze sales by weekday: 'Column not found: sale_amount_usd_sum'
+2024-12-02 22:08:37.154 | INFO     | utils.logger:<module>:17 - Logger is ready to use.
+2024-12-02 22:08:37.155 | INFO     | __main__:main:79 - Starting SALES_LOW_REVENUE_DAYOFWEEK analysis...
+2024-12-02 22:08:37.155 | INFO     | __main__:load_olap_cube:18 - Loading OLAP cube from data/olap_cubing_outputs/multidimensional_olap_cube.csv
+2024-12-02 22:08:37.158 | INFO     | __main__:load_olap_cube:20 - OLAP cube data successfully loaded from data/olap_cubing_outputs/multidimensional_olap_cube.csv.
+2024-12-02 22:08:37.158 | INFO     | __main__:analyze_sales_by_weekday:29 - Analyzing sales by weekday...
+2024-12-02 22:08:37.174 | INFO     | __main__:analyze_sales_by_weekday:36 - Sales aggregated by DayOfWeek successfully.
+2024-12-02 22:08:37.174 | INFO     | __main__:identify_least_profitable_day:46 - Least profitable day: Tuesday with revenue $1584.36.
+2024-12-02 22:08:37.175 | INFO     | __main__:main:98 - Least profitable day: Tuesday
+2024-12-02 22:08:37.175 | INFO     | __main__:visualize_sales_by_weekday:55 - Visualizing sales by weekday...
+2024-12-02 22:08:38.879 | INFO     | __main__:visualize_sales_by_weekday:71 - Visualization saved to data/results/sales_by_day_of_week.png.
