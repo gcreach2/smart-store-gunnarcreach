@@ -174,33 +174,42 @@ The database is structured using a star schema to optimize query performance for
 | region        | TEXT      | Customer region                     |
 | join_date     | TEXT      | Date when the customer joined       |
 
-## OLAP Analysis
+## OLAP Analysis of Sales by Weekday
 
-**Business Insights Goal:** Analyze sales trends by day of the week to optimize staffing and inventory planning.
+### Goal:
+The goal of this OLAP analysis is to determine which day of the week consistently shows the lowest sales revenue. This insight will help inform decisions about reducing operating hours or focusing marketing efforts on less profitable days.
 
-### Data Source:
+### Process:
+1. **Load Precomputed OLAP Cube:** The script loads a precomputed OLAP cube, which contains aggregated sales data across different dimensions like `DayOfWeek`, `ProductID`, and `CustomerID`.
+   
+2. **Analyze Sales by Weekday:**
+   - The script groups transactions by the `DayOfWeek` column.
+   - It then aggregates the total sales (`sale_amount_usd_sum`) for each day of the week.
+   - The goal is to identify the day with the lowest sales total.
 
-- `sales` table in the data warehouse. 
-- **Columns Used:** SaleDate, DayOfWeek, SaleAmount, ProductID, CustomerID. 
+3. **Visualization:** The script also generates a bar plot that visualizes total sales by each day of the week.
 
-### Key Metrics:
+### Key Columns:
+- **DayOfWeek**: The day of the week (e.g., Monday, Tuesday, etc.).
+- **sale_amount_usd_sum**: The sum of sales on that day.
 
-- **Total Sales (SUM(SaleAmount))**: To identify the most profitable days.
-- **Average Sales (AVG(SaleAmount))**: To gauge consistency in sales.
-- **Sales Count (COUNT(TransactionID))**: To assess customer activity.
+### Issue:
+During the execution, an error occurred because the expected column `sale_amount_usd_sum` was not found in the OLAP cube.
 
-### Analysis Workflow:
+#### How to Resolve:
+1. **Check Column Names in the OLAP Cube:**
+   - Open the cube file (`multidimensional_olap_cube.csv`) to verify the exact column names.
 
-- Extracted SaleDate and transformed it to DayOfWeek.
-- Aggregated data to create an OLAP cube with metrics grouped by DayOfWeek, ProductID, and CustomerID.
+2. **Update the Script:**
+   - After confirming the correct column names in the cube, update the analysis script to reference the correct column name. For example:
+     - If the correct column name for sales is `TotalSales`, update the script to use `TotalSales` instead of `sale_amount_usd_sum`.
+     
+   Example:
+   ```python
+   sales_by_weekday = (
+       cube_df.groupby("DayOfWeek")["TotalSales"].sum().reset_index()
+   )
 
-### Results
-
-- **High Sales Days:** Friday and Saturday consistently had the highest sales volumes.
-- **Low Sales Days:** Tuesday and Wednesday experienced the lowest activity.
-- **Actionable Insight:** Focus marketing efforts on low-performing days and ensure optimal inventory for high-performing days.
-
-## Validation and Testing
 
 **Unit Tests**
 
