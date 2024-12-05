@@ -223,6 +223,66 @@ PYTHONPATH=. python3 tests/test_data_scrubber.py
 
 Verify the ETL and OLAP cubing processes by inspecting the populated tables in `smart_sales.db` and reviewing the OLAP cube output.
 
+# Smart Store Data Warehouse - Spark Pipeline
+
+## GETTING STARTED
+
+### Set up your machine (1 hour)
+Follow the instructions to set up your system first:
+
+- **[Setup for macOS/Linux](#)** 
+
+### Activate your local virtual environment & install dependencies (30-40 minutes)
+1. Update the smart sales repository layout (or update scripts to utilize current layout) to match the below:
+    ```
+    project/
+    ├── data/prepared
+    │   ├── customers_data_prepared.csv
+    │   ├── products_data_prepared.csv
+    │   ├── sales_data_prepared.csv
+    ├── scripts/
+    │   ├── step0-pipeline.py           # Orchestrate the pipeline
+    │   ├── step1-extract.py            # Extract stage: Read data from sources
+    │   ├── step2-transform.py          # Transform stage: Process data for insights
+    │   ├── step3-load.py               # Load stage: Save results to storage
+    │   ├── step4-visualize.py          # Visualize results using seaborn or matplotlib
+    ├── notebooks/
+    │   ├── insights.ipynb             # Notebook orchestrating extract-transform-load (ETL) + visualization
+    ├── .gitignore
+    ├── README.md
+    └── requirements.txt
+    ```
+
+2. Follow these steps to manage the local environment:
+    **[Virtual Environment](#)**
+
+### Run PySpark Basic Script (20 minutes)
+1. In VS Code, open a PowerShell terminal in the root project folder.
+
+2. Activate your local project environment every time you open a terminal to work on the project:
+    ```bash
+    source .venv/bin/activate  # For macOS/Linux
+    ```
+
+3. Execute the script:
+    ```bash
+    python3 scripts/step0-pipeline.py
+    ```
+
+4. Protip: After running the command once, you can usually get it back by typing just the initial `py` or `python` and then hitting the right arrow key – or use the up arrow to access prior commands.
+
+### Enhance Functionality (1-2 hours)
+Add or update the files to make your own functionality:
+- Paste the contents from the file provided in this repo.
+- Execute your scripts or experiment with a Jupyter notebook.
+
+### Troubleshooting (20-60 minutes)
+If you encounter issues, ensure the correct paths are set in your environment:
+```bash
+$Env:HADOOP_HOME = "C:\Hadoop"
+Test-Path "$Env:HADOOP_HOME\bin\winutils.exe"
+
+
 ## Contributions
 
 Contributions are welcome! Submit pull requests or open issues for suggestions or bug reports.
